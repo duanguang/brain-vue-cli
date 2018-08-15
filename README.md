@@ -2,7 +2,7 @@
   基于vue by webpack 再次封装，提取少量配置，用来灵活处理打包问题，支持多入口，及多套环境配置指令方式切换。
 # use
 ```
-npm i brain-vue-cli -g 或者npm i brain-vue-cli --D
+  npm i brain-vue-cli -g 或者npm i   brain-vue-cli --D
   package.json{
       "scripts":{
         "dev": "brain-vue-cli dev", //开发环境
