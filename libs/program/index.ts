@@ -9,7 +9,7 @@ export default function programInit(program: any){
         program.ignoreConfig && (configFileList[1] = program.ignoreConfig);
         start();
     }
-    else if(program.build){
+    else if(program.build||program.dist||program.test){
         require('../../build/build');
     }
 }

@@ -12,14 +12,14 @@
         "dist": "rimraf lib && ncp src/core lib",
         "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
     },
-    "repository": "",
-    "author": "duanguang She",
+    "repository": "https://github.com/duanguang/brain-vue-cli.git",
+    "author": "duanguang",
     "keywords": [
         "webpack",
         "webpack-cli",
         "vue",
-        "bggood-cli",
-        "pack"
+        "vue-cli",
+        "brain-vue-cli"
       ],
     "license": "MIT",
     "devDependencies": {
@@ -118,6 +118,6 @@
     },
     "main": "index.js",
     "bin": {
-    "bgood-cli": "./bin/index.js"
+      "brain-vue-cli": "./bin/index.js"
     }
 }

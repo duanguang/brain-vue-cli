@@ -10,7 +10,6 @@ function resolve(dir) {
     return path.join(process.cwd(), './', dir);
     //return path.join(__dirname, '..', dir)
 }
-console.log(utils.assetsPath('img/[name].[hash:7].[ext]'));
 function getEntries() {
     let entity = apps.reduce((prev, app) => {
         prev[app] = `./src/${app}/main.js`;
