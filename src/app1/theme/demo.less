@@ -1,0 +1,27 @@
+/*style for demo*/
+//variable
+@sidebar-width: 210px;
+@nav-height: 60px;
+
+body{
+  background-color: #f1f2f7;
+}
+img{
+  /*border-radius: @btn-border-radius;*/
+}
+.vm-margin{
+  margin-top: 15px;
+}
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  //text-align: center;
+}
+.dashboard, .widget, .charts{
+  &>.ivu-row{
+    &>.ivu-col{
+      margin-top: 15px;
+    }
+  }
+}

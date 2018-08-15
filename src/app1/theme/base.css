@@ -1,0 +1,36 @@
+.operation{
+  position:relative;
+  height: 56px;
+  line-height: 56px;
+}
+.system-function{
+  position:absolute;
+  left:10px;
+}
+.system-function .ivu-btn{
+  margin-right: 5px;
+}
+.search-filter{
+  text-align: left;
+  background: white;
+  padding-left: 10px;
+  margin-left: 13px!important;
+  margin-right: 13px!important;
+}
+.containers{
+  background: white;
+  height: auto;
+  margin-top: 5px;
+  margin-left: 13px!important;
+  margin-right: 13px!important;
+  padding-bottom:13px!important ;
+}
+.containers .col{
+  width: 100%;
+  text-align: left;
+  padding-left: 20px;
+}
+.table{
+  padding: 12px 15px;
+  padding-bottom:0;
+}
