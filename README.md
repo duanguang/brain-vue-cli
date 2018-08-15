@@ -20,3 +20,7 @@ npm i brain-vue-cli -g 或者npm i brain-vue-cli --D
  - process.env.environment='dist'  预发布环境，此环境主要用来模拟线上环境数据
  - process.env.environment='test'  测试环境，测试环境中使用 
 
+# webpack Support
+- 2.x
+
+
