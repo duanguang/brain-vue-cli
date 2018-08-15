@@ -1,5 +1,5 @@
 {
-    "name": "bgood-cli",
+    "name": "brain-vue-cli",
     "version": "0.0.9",
     "description": "A command line tool used to run  projects",
     "scripts": {
