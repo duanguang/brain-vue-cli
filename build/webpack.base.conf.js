@@ -5,7 +5,7 @@ var utils = require('./utils');
 var config = require('../config');
 var vueLoaderConfig = require('./vue-loader.conf');
 const EConfig_1 = require("../libs/settings/EConfig");
-const { apps, babel: { include }, imageInLineSize } = EConfig_1.default.getInstance();
+const { apps, babel: { include }, imageInLineSize, disableEslint } = EConfig_1.default.getInstance();
 function resolve(dir) {
     return path.join(process.cwd(), './', dir);
     //return path.join(__dirname, '..', dir)
@@ -16,6 +16,18 @@ function getEntries() {
         return prev;
     }, {});
     return entity;
+}
+let rulesEslint = [];
+if (!disableEslint) {
+    rulesEslint.push({
+        test: /\.(js|vue)$/,
+        loader: 'eslint-loader',
+        enforce: 'pre',
+        include: [resolve('src'), resolve('test')],
+        options: {
+            formatter: require('eslint-friendly-formatter')
+        }
+    });
 }
 module.exports = {
     // entry: {
@@ -38,15 +50,15 @@ module.exports = {
     },
     module: {
         rules: [
-            {
-                test: /\.(js|vue)$/,
-                loader: 'eslint-loader',
-                enforce: 'pre',
-                include: [resolve('src'), resolve('test')],
-                options: {
-                    formatter: require('eslint-friendly-formatter')
-                }
-            },
+            // {
+            //   test: /\.(js|vue)$/,
+            //   loader: 'eslint-loader',
+            //   enforce: 'pre',
+            //   include: [resolve('src'), resolve('test')],
+            //   options: {
+            //     formatter: require('eslint-friendly-formatter')
+            //   }
+            // },
             {
                 test: /\.vue$/,
                 loader: 'vue-loader',
@@ -82,6 +94,6 @@ module.exports = {
                     name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
                 }
             }
-        ]
+        ].concat(rulesEslint)
     }
 };

@@ -6,6 +6,7 @@ module.exports = {
     imageInLineSize: 8192,
     publicPath: "/public/",
     chunkhash:true,
+    disableEslint:false,
     devServer: {
         proxy: {}
         /*proxy: [{

@@ -22,6 +22,7 @@ export default class EConfig{
     public imageInLineSize: number;
     public publicPath: string;
     public chunkhash:boolean;//是否生成hash
+    public disableEslint:boolean=false
     public devServer: {
         noInfo: boolean,
         proxy: Array<any>

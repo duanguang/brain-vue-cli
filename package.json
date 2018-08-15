@@ -1,6 +1,6 @@
 {
     "name": "brain-vue-cli",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "A command line tool used to run  projects",
     "scripts": {
         "dev": "node build/dev-server.js",
