@@ -9,7 +9,7 @@ function programInit(program) {
         program.ignoreConfig && (EConfig_1.configFileList[1] = program.ignoreConfig);
         server_1.default();
     }
-    else if (program.build || program.dist || program.test) {
+    else if (program.build || program.dist || program.test || program.report) {
         require('../../build/build');
     }
 }

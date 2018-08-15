@@ -9,6 +9,7 @@
         "build": "brain-vue-cli build",//生产环境
         "build:dist": "brain-vue-cli dist",//预发布环境
         "build:test": "brain-vue-cli test",//测试环境
+        "build:report": "brain-vue-cli report" // 生成包大小分析服务
       }
   }
 ```
