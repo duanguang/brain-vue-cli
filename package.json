@@ -19,7 +19,9 @@
         "webpack-cli",
         "vue",
         "vue-cli",
-        "brain-vue-cli"
+        "brain",
+        "brain-vue-cli",
+        "vue-multipage"
       ],
     "license": "MIT",
     "devDependencies": {
