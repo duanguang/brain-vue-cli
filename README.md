@@ -24,4 +24,7 @@
 # webpack Support
 - 2.x
 
+# Licensing
+MIT license
+
 
