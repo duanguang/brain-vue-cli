@@ -8,13 +8,7 @@
     }],
     "stage-2"
   ],
-  "plugins": ["transform-runtime","transform-vue-jsx","transform-decorators-legacy",
-    ["component", [
-      {
-        "libraryName": "~iview",
-        "libDir":"src/components"
-      }
-    ]]],
+  "plugins": ["transform-runtime","transform-vue-jsx","transform-decorators-legacy"],
   "env": {
     "test": {
       "presets": ["env", "stage-2"],

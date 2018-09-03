@@ -38,7 +38,8 @@ export default class EConfig{
             vendors: string[]
         },
         disableReactHotLoader: boolean,
-        commonsChunkPlugin:ICommonsChunkPlugin
+        commonsChunkPlugin:ICommonsChunkPlugin,
+        happypack:false
     };
 
     public babel: {

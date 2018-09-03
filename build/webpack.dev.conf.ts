@@ -1,4 +1,5 @@
 import { getHtmlWebpackPlugins } from '../libs/webpack/plugins/htmlWebpackPlugin';
+import { plugins } from './happy-pack-conf';
 var utils = require('./utils')
 var webpack = require('webpack')
 var config = require('../config')
@@ -16,6 +17,7 @@ Object.keys(baseWebpackConfig.entry).forEach(function (name) {
  // baseWebpackConfig.entry[name] = ['./build/dev-client'].concat(baseWebpackConfig.entry[name])
  baseWebpackConfig.entry[name] = [resolve('build/dev-client')].concat(baseWebpackConfig.entry[name]);
 })
+
 module.exports = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap })
@@ -36,6 +38,7 @@ module.exports = merge(baseWebpackConfig, {
     //   inject: true
     // }),
     ...getHtmlWebpackPlugins(),
-    new FriendlyErrorsPlugin()
+    new FriendlyErrorsPlugin(),
+    ...plugins
   ]
 })

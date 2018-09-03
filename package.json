@@ -1,11 +1,15 @@
 {
     "name": "brain-vue-cli",
-    "version": "0.1.2",
+    "version": "0.1.5",
     "description": "A command line tool used to run  projects",
     "scripts": {
         "dev": "node build/dev-server.js",
         "start": "node build/dev-server.js",
-        "build": "node build/build.js",
+        "build:dist": "node bin/index.js dist",
+        "build:prod": "node bin/index.js prod",
+        "build:test": "node bin/index.js test",
+        "build:report": "node bin/index.js report",
+        "build": "node build/build.js ",
         "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js  --single-run",
         "e2e": "node test/e2e/runner.js",
         "test": "npm run unit && npm run e2e",
@@ -43,6 +47,7 @@
         "typescript": "^2.2.1"
     },
     "dependencies": {
+        "add-asset-html-webpack-plugin": "^2.1.3",
         "autoprefixer": "^7.1.2",
         "babel-core": "^6.22.1",
         "babel-eslint": "^7.1.1",
@@ -116,7 +121,8 @@
         "webpack-bundle-analyzer": "^2.2.1",
         "webpack-dev-middleware": "^1.10.0",
         "webpack-hot-middleware": "^2.18.0",
-        "webpack-merge": "^4.1.0"
+        "webpack-merge": "^4.1.0",
+        "happypack":"^5.0.0"
     },
     "main": "index.js",
     "bin": {

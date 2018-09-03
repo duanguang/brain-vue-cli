@@ -1,6 +1,7 @@
 import { getHtmlWebpackPlugins } from '../libs/webpack/plugins/htmlWebpackPlugin';
 var path = require('path')
 import EConfig from '../libs/settings/EConfig';
+import { plugins } from './happy-pack-conf';
 var utils = require('./utils')
 var webpack = require('webpack')
 var config = require('../config')
@@ -42,7 +43,7 @@ var webpackConfig = merge(baseWebpackConfig, {
         drop_debugger: true,
         drop_console: true
       },
-      sourceMap: true
+      sourceMap: process.env.environment==='production'?false:true
     }),
     // extract css into its own file
     new ExtractTextPlugin({
@@ -103,7 +104,7 @@ var webpackConfig = merge(baseWebpackConfig, {
         ignore: ['.*']
       }
     ])
-  ]
+  ].concat(plugins)
 })
 
 if (config.build.productionGzip) {

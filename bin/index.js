@@ -9,7 +9,7 @@ program
     .version(pkg.version)
     .option('-i, --init', '初始化构建项目')
     .option('-D, --dev', '运行Dev开发环境')
-    .option('-d, --build', '运行部署开发环境')
+    .option('-d, --prod', '运行部署开发环境')
     .option('-d, --test', '运行部署开发测试环境')
     .option('-d, --dist', '运行部署开发预发布环境')
     .option('-d, --report', '进行包大小分析')
@@ -31,7 +31,7 @@ else {
         process.env.NODE_ENV = constants_1.PRODUCTION;
         NODE_ENV = '预发布环境';
     }
-    else if (program.build) {
+    else if (program.prod) {
         process.env.environment = constants_1.PRODUCTION;
         process.env.NODE_ENV = constants_1.PRODUCTION;
         NODE_ENV = '生产环境';

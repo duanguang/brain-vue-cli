@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const htmlWebpackPlugin_1 = require("../libs/webpack/plugins/htmlWebpackPlugin");
+const happy_pack_conf_1 = require("./happy-pack-conf");
 var utils = require('./utils');
 var webpack = require('webpack');
 var config = require('../config');
@@ -38,6 +39,7 @@ module.exports = merge(baseWebpackConfig, {
         //   inject: true
         // }),
         ...htmlWebpackPlugin_1.getHtmlWebpackPlugins(),
-        new FriendlyErrorsPlugin()
+        new FriendlyErrorsPlugin(),
+        ...happy_pack_conf_1.plugins
     ]
 });

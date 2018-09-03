@@ -30,6 +30,10 @@ module.exports = {
         }
     },
     webpack: {
+        dllConfig: {
+            vendors: ['vue','vue-router']
+        },
+        happypack:true
     },
     babel: {
         include:['node_modules/bgood-widget']

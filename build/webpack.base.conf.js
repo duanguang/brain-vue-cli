@@ -5,7 +5,7 @@ var utils = require('./utils');
 var config = require('../config');
 var vueLoaderConfig = require('./vue-loader.conf');
 const EConfig_1 = require("../libs/settings/EConfig");
-const { apps, babel: { include }, imageInLineSize, disableEslint } = EConfig_1.default.getInstance();
+const { apps, babel: { include }, imageInLineSize, disableEslint, webpack: { happypack } } = EConfig_1.default.getInstance();
 function resolve(dir) {
     return path.join(process.cwd(), './', dir);
     //return path.join(__dirname, '..', dir)
@@ -28,6 +28,32 @@ if (!disableEslint) {
             formatter: require('eslint-friendly-formatter')
         }
     });
+}
+let rule = [];
+if (happypack) {
+    rule = [{
+            test: /\.js$/,
+            loader: 'happypack/loader?id=js',
+            include: [resolve('src'), resolve('test'), ...include.map((item) => resolve(item))]
+        },
+        {
+            test: /\.vue$/,
+            loader: 'happypack/loader?id=vuejs',
+        }];
+}
+else {
+    rule = [
+        {
+            test: /\.vue$/,
+            loader: 'vue-loader',
+            options: vueLoaderConfig
+        },
+        {
+            test: /\.js$/,
+            loader: 'babel-loader',
+            include: [resolve('src'), resolve('test'), ...include.map((item) => resolve(item))]
+        },
+    ];
 }
 module.exports = {
     // entry: {
@@ -59,16 +85,17 @@ module.exports = {
             //     formatter: require('eslint-friendly-formatter')
             //   }
             // },
-            {
-                test: /\.vue$/,
-                loader: 'vue-loader',
-                options: vueLoaderConfig
-            },
-            {
-                test: /\.js$/,
-                loader: 'babel-loader',
-                include: [resolve('src'), resolve('test'), ...include.map((item) => resolve(item))]
-            },
+            ...rule,
+            // {
+            //   test: /\.vue$/,
+            //   loader: 'vue-loader',
+            //   options: vueLoaderConfig
+            // },
+            // {
+            //   test: /\.js$/,
+            //   loader: 'babel-loader',
+            //   include: [resolve('src'), resolve('test'),...include.map((item)=>resolve(item))]
+            // },
             { test: /iview.src.*?js$/, loader: 'babel-loader' },
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,

@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const htmlWebpackPlugin_1 = require("../libs/webpack/plugins/htmlWebpackPlugin");
 var path = require('path');
 const EConfig_1 = require("../libs/settings/EConfig");
+const happy_pack_conf_1 = require("./happy-pack-conf");
 var utils = require('./utils');
 var webpack = require('webpack');
 var config = require('../config');
@@ -44,7 +45,7 @@ var webpackConfig = merge(baseWebpackConfig, {
                 drop_debugger: true,
                 drop_console: true
             },
-            sourceMap: true
+            sourceMap: process.env.environment === 'production' ? false : true
         }),
         // extract css into its own file
         new ExtractTextPlugin({
@@ -101,7 +102,7 @@ var webpackConfig = merge(baseWebpackConfig, {
                 ignore: ['.*']
             }
         ])
-    ]
+    ].concat(happy_pack_conf_1.plugins)
 });
 if (config.build.productionGzip) {
     var CompressionWebpackPlugin = require('compression-webpack-plugin');
