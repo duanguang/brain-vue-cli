@@ -1,11 +1,12 @@
 # brain-vue-cli
-  基于vue by webpack 再次封装，提取少量配置，用来灵活处理打包问题，支持多入口，及多套环境配置指令方式切换。
+  基于vue by webpack 再次封装，提取少量配置，用来灵活处理打包问题，支持多入口，及多套环境配置指令方式切换以及按需构建入口文件。
 # use
 ```
   npm i brain-vue-cli -g 或者npm i   brain-vue-cli --D
   package.json{
       "scripts":{
         "dev": "brain-vue-cli dev", //开发环境
+        "dev1": "brain-vue-cli dev app1", //开发环境 按需构建入口文件
         "build": "brain-vue-cli prod",//生产环境
         "build:dist": "brain-vue-cli dist",//预发布环境
         "build:test": "brain-vue-cli test",//测试环境
