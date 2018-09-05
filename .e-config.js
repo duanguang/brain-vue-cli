@@ -33,7 +33,7 @@ module.exports = {
         dllConfig: {
             vendors: ['vue','vue-router']
         },
-        happypack:true
+        happypack:false
     },
     babel: {
         include:['node_modules/bgood-widget']

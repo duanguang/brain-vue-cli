@@ -5,13 +5,14 @@ var utils = require('./utils');
 var config = require('../config');
 var vueLoaderConfig = require('./vue-loader.conf');
 const EConfig_1 = require("../libs/settings/EConfig");
+const app_1 = require("../libs/utils/app");
 const { apps, babel: { include }, imageInLineSize, disableEslint, webpack: { happypack } } = EConfig_1.default.getInstance();
 function resolve(dir) {
     return path.join(process.cwd(), './', dir);
     //return path.join(__dirname, '..', dir)
 }
 function getEntries() {
-    let entity = apps.reduce((prev, app) => {
+    let entity = app_1.getApps().reduce((prev, app) => {
         prev[app] = `./src/${app}/main.js`;
         return prev;
     }, {});
