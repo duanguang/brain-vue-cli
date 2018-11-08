@@ -1,15 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const EConfig_1 = require("../settings/EConfig");
+// import {configFileList, default as EConfig} from '../settings/EConfig';
+// import * as path from 'path';
+// import commander = require('commander');
 // import ICommand = commander.ICommand;
 const server_1 = require("../../server");
-function programInit(program) {
-    if (program.dev) {
-        program.config && (EConfig_1.configFileList[0] = program.config);
-        program.ignoreConfig && (EConfig_1.configFileList[1] = program.ignoreConfig);
+function programInit(env) {
+    if (env === 'dev') {
+        // program.config && (configFileList[0] = program.config);
+        // program.ignoreConfig && (configFileList[1] = program.ignoreConfig);
         server_1.default();
     }
-    else if (program.prod || program.dist || program.test || program.report) {
+    else if (env === 'prod' || env === 'dist' || env === 'test') {
         require('../../build/build');
     }
 }

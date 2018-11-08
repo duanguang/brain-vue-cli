@@ -3,7 +3,7 @@
     "version": "0.1.6",
     "description": "A command line tool used to run  projects",
     "scripts": {
-        "dev": "node build/dev-server.js",
+        "dev": "node bin/index.js dev",
         "start": "node bin/index.js dev ",
         "build:dist": "node bin/index.js dist",
         "build:prod": "node bin/index.js prod",
@@ -70,7 +70,7 @@
         "cross-spawn": "^5.0.1",
         "css-loader": "^0.28.0",
         "cssnano": "^3.10.0",
-        "commander": "2.9.0",
+        "commander": "^2.11.0",
         "deep-assign": "^2.0.0",
         "eslint": "^3.19.0",
         "eslint-config-standard": "^6.2.1",
@@ -100,7 +100,6 @@
         "less-loader": "^4.0.4",
         "lolex": "^1.5.2",
         "mocha": "^3.2.0",
-        "mockjs": "^1.0.1-beta3",
         "ncp": "^2.0.0",
         "nightwatch": "^0.9.12",
         "opn": "^5.1.0",
@@ -126,6 +125,7 @@
     },
     "main": "index.js",
     "bin": {
-      "brain-vue-cli": "./bin/index.js"
+      "brain-vue-cli": "./bin/index.js",
+      "brain-vue": "./bin/index.js"
     }
 }
