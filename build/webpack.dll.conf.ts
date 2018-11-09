@@ -7,7 +7,7 @@ const webpackDllManifest = WebpackDllManifest.getInstance();
 const distPath = webpackDllManifest.distPath;
 const isVendorExist = vendors && vendors.length;
 if (isVendorExist) {
-    const distFileName = webpackDllManifest.getVendorsHash();
+    // const distFileName = webpackDllManifest.getVendorsHash();
     module.exports = {
         entry: {
             vendors

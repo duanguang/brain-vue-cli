@@ -13,24 +13,26 @@ var utils = require('./utils');
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 const WebpackDllManifest_1 = require("../libs/settings/WebpackDllManifest");
 const helpers_1 = require("../libs/utils/helpers");
-var plugins = [
-    () => {
-        //TODO:暂时放在这里
-        const filepath = WebpackDllManifest_1.default.getInstance().resolveManifestPath();
-        if (filepath) {
-            const dllReferencePlugin = helpers_1.getDllReferencePlugin();
-            if (dllReferencePlugin) {
-                webpackConfig.plugins.push(dllReferencePlugin);
+if (process.env.NODE_ENV !== 'development') {
+    var plugins = [
+        () => {
+            //TODO:暂时放在这里
+            const filepath = WebpackDllManifest_1.default.getInstance().resolveManifestPath();
+            if (filepath) {
+                const dllReferencePlugin = helpers_1.getDllReferencePlugin();
+                if (dllReferencePlugin) {
+                    webpackConfig.plugins.push(dllReferencePlugin);
+                }
+                webpackConfig.plugins.push(new AddAssetHtmlPlugin({
+                    includeSourcemap: false, filepath,
+                    outputPath: utils.assetsPath('js'),
+                    publicPath: path.posix.join(config.build.assetsPublicPath, 'static/js'),
+                }));
             }
-            webpackConfig.plugins.push(new AddAssetHtmlPlugin({
-                includeSourcemap: false, filepath,
-                outputPath: utils.assetsPath('js'),
-                publicPath: path.posix.join(config.build.assetsPublicPath, 'static/js'),
-            }));
         }
-    }
-];
-plugins.forEach(pending => pending());
+    ];
+    plugins.forEach(pending => pending());
+}
 var spinner = ora('building for production...');
 spinner.start();
 rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {

@@ -6,7 +6,7 @@ exports.PROJECT_USER_CONFIG_IGNORE_FILE = `.e-config-ignore.js`;
 exports.DIST = `dist`;
 exports.DEV = `development`;
 exports.PRODUCTION = `production`;
-exports.WEBPACK_DLL_MANIFEST_DIST = path.join(process.cwd(), 'node_modules/.cache', 'library-manifest');
+exports.WEBPACK_DLL_MANIFEST_DIST = path.join(process.cwd(), '.cache', 'library-manifest');
 exports.WORKING_DIRECTORY = `src`;
 const EConfig_1 = require("../settings/EConfig");
 exports.HISTORY_REWRITE_FALL_BACK_REGEX_FUNC = (name) => {

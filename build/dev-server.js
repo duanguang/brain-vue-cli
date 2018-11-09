@@ -1,12 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const EConfig_1 = require("../libs/settings/EConfig");
 const constants_1 = require("../libs/constants/constants");
@@ -16,12 +8,11 @@ if (!process.env.NODE_ENV) {
     process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV);
 }
 const { name, apps } = EConfig_1.default.getInstance();
-const webpackDllCompiler_1 = require("../libs/settings/webpackDllCompiler");
 var opn = require('opn');
 var path = require('path');
 var express = require('express');
 var webpack = require('webpack');
-var request = require('request');
+// var request = require('request');
 var proxyMiddleware = require('http-proxy-middleware');
 var webpackConfig = process.env.NODE_ENV === 'testing'
     ? require('./webpack.prod.conf')
@@ -33,12 +24,6 @@ var autoOpenBrowser = !!config.dev.autoOpenBrowser;
 // Define HTTP proxies to your custom API backend
 // https://github.com/chimurai/http-proxy-middleware
 var proxyTable = config.dev.proxyTable;
-function start() {
-    return __awaiter(this, void 0, void 0, function* () {
-        yield webpackDllCompiler_1.default();
-    });
-}
-start();
 var app = express();
 var compiler = webpack(webpackConfig);
 var historyApiFallback = require('connect-history-api-fallback');

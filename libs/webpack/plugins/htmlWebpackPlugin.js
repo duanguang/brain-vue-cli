@@ -4,7 +4,7 @@ const fs = require("fs");
 const EConfig_1 = require("../../settings/EConfig");
 const { apps, htmlWebpackPlugin: { title }, chunkhash } = EConfig_1.default.getInstance();
 const path = require("path");
-const app_1 = require("../../utils/app");
+const getEntries_1 = require("../entries/getEntries");
 var merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 function htmlWebpackPluginInstance(templatePath, filename, chunks) {
@@ -32,7 +32,7 @@ function htmlWebpackPluginInstance(templatePath, filename, chunks) {
     return new HtmlWebpackPlugin(conf);
 }
 function getHtmlWebpackPlugins() {
-    return (app_1.getApps()).map((app) => {
+    return (getEntries_1.entries()).map((app) => {
         const workingDirectory = process.cwd();
         const relativeTargetDirectory = `${app}`;
         const relativeTargetHtml = path.join(relativeTargetDirectory, '/index.html');

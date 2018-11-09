@@ -5,7 +5,7 @@ export const PROJECT_USER_CONFIG_IGNORE_FILE = `.e-config-ignore.js`;
 export const DIST = `dist`;
 export const DEV = `development`;
 export const PRODUCTION = `production`;
-export const WEBPACK_DLL_MANIFEST_DIST = path.join(process.cwd(), 'node_modules/.cache', 'library-manifest');
+export const WEBPACK_DLL_MANIFEST_DIST = path.join(process.cwd(), '.cache', 'library-manifest');
 
 export const WORKING_DIRECTORY = `src`;
 import EConfig from '../settings/EConfig';

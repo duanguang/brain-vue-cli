@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import EConfig from '../../settings/EConfig';
 const {apps, htmlWebpackPlugin: {title},chunkhash} = EConfig.getInstance();
 import * as path from 'path';
-import { getApps } from '../../utils/app';
+import { entries } from '../entries/getEntries';
 var merge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 function htmlWebpackPluginInstance(templatePath: string, filename: string, chunks: string[]) {
@@ -31,7 +31,7 @@ function htmlWebpackPluginInstance(templatePath: string, filename: string, chunk
 }
 export function getHtmlWebpackPlugins(): any[]{
 
-    return (getApps()).map((app) => {
+    return (entries()).map((app) => {
         const workingDirectory = process.cwd();
         const relativeTargetDirectory = `${app}`;
         const relativeTargetHtml = path.join(relativeTargetDirectory, '/index.html');
