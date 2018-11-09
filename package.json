@@ -22,13 +22,14 @@
     "repository": "https://github.com/duanguang/brain-vue-cli.git",
     "author": "duanguang",
     "keywords": [
-        "webpack",
-        "webpack-cli",
-        "vue",
-        "vue-cli",
         "brain",
         "brain-vue-cli",
-        "vue-multipage"
+        "vue-multipage",
+        "brain",
+        "cli",
+        "webpack-cli",
+        "brain-cli",
+        "vue-webpack"
       ],
     "license": "MIT",
     "devDependencies": {
