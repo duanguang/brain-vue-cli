@@ -3,7 +3,19 @@ const HappyPack = require('happypack');
 const os = require('os');
 const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 var vueLoaderConfig = require('./vue-loader.conf')
-const {webpack:{happypack}} = EConfig.getInstance();
+const {projectType,webpack:{happypack}} = EConfig.getInstance();
+let pluginsOptions = vueLoaderConfig
+if(projectType==='js'){
+    pluginsOptions = vueLoaderConfig
+}
+else if(projectType==='ts'){
+    pluginsOptions = Object.assign(vueLoaderConfig, {
+                        loaders: {
+                         //   ts: 'ts-loader',
+                          ts: 'babel-loader!ts-loader'
+                        }
+                    })
+}
 export const plugins=happypack?[
     new HappyPack({
         id: 'js',
@@ -18,7 +30,7 @@ export const plugins=happypack?[
         threadPool: happyThreadPool,
         loaders: [{
             loader: 'vue-loader',
-            options: vueLoaderConfig,
+            options: pluginsOptions
           }]
       })
 ]:[];

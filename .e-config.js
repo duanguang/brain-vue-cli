@@ -1,6 +1,7 @@
 module.exports = {
     name: "test",
     open: true,
+    projectType:"js",// 项目类型js,ts 默认js
     defaultPort: 8000,
     server: "0.0.0.0",
     imageInLineSize: 8192,

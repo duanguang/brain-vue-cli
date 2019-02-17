@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const EConfig_1 = require("../../settings/EConfig");
 const logs_1 = require("../../utils/logs");
-const { apps } = EConfig_1.default.getInstance();
+const { apps, projectType } = EConfig_1.default.getInstance();
 function getApps() {
     let entries = [];
     return function () {
@@ -49,8 +49,12 @@ function getApps() {
 }
 exports.entries = getApps();
 function getEntries() {
+    let type = 'js';
+    if (projectType === 'ts') {
+        type = projectType;
+    }
     let entity = exports.entries().reduce((prev, app) => {
-        prev[app] = `./src/${app}/main.js`;
+        prev[app] = `./src/${app}/main.${type}`;
         return prev;
     }, {});
     return entity;

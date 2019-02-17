@@ -12,6 +12,7 @@ const defaultEConfig = require(path.resolve(__dirname, `../../${constants_1.PROJ
 exports.configFileList = [constants_1.PROJECT_USER_CONFIG_FILE, constants_1.PROJECT_USER_CONFIG_IGNORE_FILE];
 class EConfig {
     constructor() {
+        this.projectType = 'js';
         this.disableEslint = false;
         this.init();
     }

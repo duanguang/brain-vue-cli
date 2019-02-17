@@ -21,6 +21,7 @@ export default class EConfig{
     public server: string;
     public imageInLineSize: number;
     public publicPath: string;
+    public projectType :string='js';
     public chunkhash:boolean;//是否生成hash
     public disableEslint:boolean=false
     public devServer: {

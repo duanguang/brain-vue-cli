@@ -4,7 +4,8 @@ var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
 import EConfig from '../libs/settings/EConfig';
 import { getEntries } from '../libs/webpack/entries/getEntries';
-const {apps,babel:{include},imageInLineSize,disableEslint,webpack:{happypack}} = EConfig.getInstance();
+const tsImportPluginFactory = require('ts-import-plugin')
+const {apps,babel:{include},projectType,imageInLineSize,disableEslint,webpack:{happypack}} = EConfig.getInstance();
 function resolve (dir) {
   return path.join(process.cwd(),'./',dir)
   //return path.join(__dirname, '..', dir)
@@ -34,18 +35,72 @@ if(happypack){
     // exclude: /node_modules/,
   }]
 }else{
-  rule=[
-    {
+  if(projectType==='ts'){
+     rule.push(
+      {
+          test: /\.vue$/,
+          loader: 'vue-loader',
+          options: Object.assign(vueLoaderConfig, {
+              loaders: {
+              //   ts: 'ts-loader',
+                ts: 'babel-loader!ts-loader'
+              }
+            })
+
+       }
+     )
+  }
+  else if(projectType==='js'){
+    rule.push({
       test: /\.vue$/,
       loader: 'vue-loader',
       options: vueLoaderConfig
-    },
-    {
-      test: /\.js$/,
-      loader: 'babel-loader',
-      include: [resolve('src'), resolve('test'),...include.map((item)=>resolve(item))]
-    },
-  ]
+    })
+  }
+  rule.push({
+    test: /\.js$/,
+    loader: 'babel-loader',
+    include: [resolve('src'), resolve('test'),...include.map((item)=>resolve(item))]
+  })
+}
+let tsRule=[]
+if(projectType==='ts'){
+   tsRule = [{
+    test: /\.ts$/,
+    exclude: /node_modules|vue\/src/,
+    loader: 'ts-loader',
+    options: {
+      appendTsSuffixTo: [/\.vue$/],
+    //   transpileOnly: true,
+    //   getCustomTransformers: () => ({
+    //         before: [ tsImportPluginFactory([{
+    //             libraryName: 'ant-design-vue',
+    //             libraryDirectory: 'lib',
+    //             style: "css",
+    //             camel2DashComponentName: true,
+    //         }]) ]
+    //    }),
+    //    compilerOptions: {
+    //         module: 'es2015'
+    //    }
+    }
+  },
+  {
+      test: /\.tsx$/,
+      exclude: /node_modules/,
+      // include: [path.resolve(__dirname, 'node_modules/ant-design-vue'),resolve('src')],
+      use: [
+          'babel-loader',
+          {
+              loader: 'ts-loader',
+              options: {
+                  // 自动将所有.vue文件转化为.vue.tsx文件
+                  appendTsSuffixTo: [/\.vue$/]
+                }
+          }
+      ],
+      
+    }]
 }
 module.exports = {
   // entry: {
@@ -60,7 +115,7 @@ module.exports = {
       : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json'],
+    extensions: ['.js', '.vue', '.json','.ts','.tsx'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src')
@@ -89,6 +144,7 @@ module.exports = {
       //   include: [resolve('src'), resolve('test'),...include.map((item)=>resolve(item))]
       // },
       { test: /iview.src.*?js$/, loader: 'babel-loader' },
+      ...tsRule,
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',

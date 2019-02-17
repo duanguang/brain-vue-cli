@@ -1,6 +1,6 @@
 import EConfig from '../../settings/EConfig';
 import { warning, log } from '../../utils/logs';
-const {apps} = EConfig.getInstance();
+const {apps,projectType} = EConfig.getInstance();
 function getApps(){
   let entries=[];
   return function(){
@@ -46,8 +46,12 @@ function getApps(){
 }
 export const entries:any=getApps();
 export function getEntries():any[]{
+    let type = 'js'
+    if(projectType==='ts'){
+        type = projectType
+    } 
     let entity= entries().reduce((prev, app) => {
-      prev[app] = `./src/${app}/main.js`;
+      prev[app] = `./src/${app}/main.${type}`;
       return prev;
     }, {} as any);
     return entity;
