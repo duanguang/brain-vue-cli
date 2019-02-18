@@ -1,5 +1,13 @@
 # brain-vue-cli
   基于vue by webpack 再次封装，提取少量配置，用来灵活处理打包问题，支持多入口，及多套环境配置指令方式切换以及按需构建入口文件。
+# 优势
+ - 支持typescript
+ - 支持iview,antd-design-vue 按需加载
+ - 支持less,css
+ - 支持jsx,tsx
+ - 支持eslint,tslint
+ - 支持多套环境构建流程
+
 # use
 ```
   npm i brain-vue-cli -g 或者npm i   brain-vue-cli --D

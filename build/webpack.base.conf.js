@@ -14,15 +14,25 @@ function resolve(dir) {
 }
 let rulesEslint = [];
 if (!disableEslint) {
-    rulesEslint.push({
-        test: /\.(js|vue)$/,
-        loader: 'eslint-loader',
-        enforce: 'pre',
-        include: [resolve('src'), resolve('test')],
-        options: {
-            formatter: require('eslint-friendly-formatter')
-        }
-    });
+    if (projectType === 'ts') {
+        rulesEslint.push({
+            test: /\.ts|tsx|vue$/,
+            exclude: /node_modules/,
+            enforce: 'pre',
+            loader: 'tslint-loader'
+        });
+    }
+    else if (projectType === 'js') {
+        rulesEslint.push({
+            test: /\.(js|vue)$/,
+            loader: 'eslint-loader',
+            enforce: 'pre',
+            include: [resolve('src'), resolve('test')],
+            options: {
+                formatter: require('eslint-friendly-formatter')
+            }
+        });
+    }
 }
 let rule = [];
 if (happypack) {
