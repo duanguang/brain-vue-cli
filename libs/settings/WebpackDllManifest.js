@@ -33,6 +33,9 @@ class WebpackDllManifest {
         return this.hashValue;
     }
     static getVendorVersion(vendorName, baseDir = process.cwd()) {
+        if (vendorName === 'vue/dist/vue.esm.js') {
+            vendorName = 'vue';
+        }
         const packageJson = node_1.emulateNodeRecursiveLookup(baseDir, `node_modules/${vendorName}/package.json`);
         if (!packageJson) {
             throw new Error(`vendor[${vendorName}] package not found`);
